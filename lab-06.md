@@ -1,7 +1,7 @@
 Lab 06 - Sad plots
 ================
-Insert your name here
-Insert date here
+Marcus Minko
+02-16-2022
 
 ### Load packages and data
 
