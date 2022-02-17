@@ -8,6 +8,12 @@ Marcus Minko
 ``` r
 library(tidyverse) 
 library(dsbox) 
+
+staff <- read_csv("data/instructional-staff.csv")
+
+staff_long <- staff %>%
+  pivot_longer(cols = -faculty_type, names_to = "year") %>%
+  mutate(value = as.numeric(value))
 ```
 
 ### Exercise 1
