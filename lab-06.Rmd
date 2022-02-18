@@ -65,7 +65,31 @@ ggplot(Whickham, aes(x = outcome)) + geom_bar()
 ggplot(Whickham, aes(x = smoker)) + geom_bar()
 ggplot(Whickham, aes(x = age)) + geom_histogram (binwidth = 5)
 
-```
-...
+Whickham %>% 
+        ggplot(aes(x = outcome, fill = outcome)) + geom_bar() + facet_wrap(vars(smoker))
 
-Add exercise headings as needed.
+#Create age categories and analyze
+
+Whickham <- Whickham %>% 
+ mutate(age_cat = case_when(
+     age <= 44              ~ "18-44",
+     age > 44 & age <= 64   ~ "45-64",
+     age > 64               ~ "65+"))
+
+Whickham %>% 
+        ggplot(aes(x = outcome, fill = outcome)) + geom_bar() + facet_grid(vars(age_cat), vars(smoker))
+
+ Whickham %>% 
+     ggplot(aes(x = outcome, fill = outcome)) +
+     geom_bar() + 
+     facet_grid(vars(age_cat), vars(smoker)) +
+     labs(title = "Smoking Status and Mortality", x = "Mortality", y = "Frequency & Age Group") + theme_minimal()
+
+
+
+Whickham %>%
+     count(smoker, age_cat, outcome)
+   
+```
+
+Faceting outcomes by smoking status and age category allows you to see that the effects of smoking on mortality is greatest beyond age 65.
